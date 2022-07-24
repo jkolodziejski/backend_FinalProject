@@ -1,4 +1,8 @@
 import Express from "express";
+
+import swaggerJsDoc from "swagger-jsdoc";
+import swaggerUI from "swagger-ui-express";
+
 const app = Express();
 import http from "http";
 
@@ -11,11 +15,36 @@ import {Server} from "socket.io";
 const io = new Server(server);
 
 
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: { 
+      title:  'First API',
+      description: 'test',
+      contacts: {
+        name: 'Jakub i Piotrek',
+      },
+      servers : ["http://localhost:3001"],
+    }
+  },
+  //
+  apis:["index_1.js"]
+};
 
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 const filename = fileURLToPath(import.meta.url);
-const dir = dirname(filename);
+const dir = dirname(filename); 
 
+/**
+ * @swagger 
+ * /customers:
+ *  get:
+ *    description: Test
+ *    responses:
+ *      '200':
+ *        description: A
+ */
 app.get('/', (req, res) => {
     res.sendFile(dir + '/index.html');
   });

@@ -7,12 +7,6 @@ app.use(Express.json());
 app.use(Express.urlencoded({extended: true}))
 
 
-function mid(req , res , next){
-    console.log(res.body)
-    console.log(req.body)
-    next();
-}
-
 
 app.get("/", (req,res) => {
     res.send('<h1> Hello word</h1>');
