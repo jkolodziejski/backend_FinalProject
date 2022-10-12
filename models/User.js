@@ -9,7 +9,7 @@ class User{
     }
     
     async save(){
-        let sql = 'INSERT INTO Users(user,email,pasword) VALUES( ${this.login} , ${this.email}, ${his.password} )';
+        let sql = `INSERT INTO User (login,email,password) VALUES(  '${this.login}' , '${this.email}' , '${this.password}' );`;
 
         const [newPost,_] = await db.execute(sql);
 

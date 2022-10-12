@@ -1,10 +1,11 @@
 
 
-POST http://localhost:3000/add
+POST localhost:3306/posts
 Content-Type: application/json
 
 {
-    "username" : "kuba",
+    "login" : "kuba",
+    "email" : "test",
     "password" : "linux123"
 }
 
