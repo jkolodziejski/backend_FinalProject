@@ -16,6 +16,14 @@ class User{
         return newPost;
     }
 
+    async  checkexit(){
+        let sql = `SELECT * FROM User WHERE login = '${this.login}' ;`;
+
+        const [newPost,_] = await db.execute(sql);
+
+        return newPost;
+    }
+
 
     static findAll(){
     }
