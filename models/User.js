@@ -1,10 +1,10 @@
 const db = require('../config/db')
 
 class User{
-    constructor(login, email, passowrd){
+    constructor(login, email, password){
         this.login = login;
         this.email = email;
-        this.passowrd = passowrd;
+        this.password = password;
 
     }
     
@@ -16,7 +16,7 @@ class User{
         return newPost;
     }
 
-    async  checkexit(){
+    async  checkexsits(){
         let sql = `SELECT * FROM User WHERE login = '${this.login}' ;`;
 
         const [newPost,_] = await db.execute(sql);
