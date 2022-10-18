@@ -3,24 +3,32 @@ const User = require('../models/User')
 exports.createNewUser = async (req, res, next ) => {
     let {login, email, password } = req.body;
     let  user = new User(login, email,password);
-    exit = await user.checkexsits();
-    console.log(exit.length);
+    existsUser = await user.checkexsits();
     if ( exit.length  ) {
-        console.log("istnieje");
-        res.send("User existes");
+        res.send("You cannot add user!");
     }
     else{
-    user = await  user.save();
-    console.log(user);
-    res.send("User added");
+        user = await  user.save();
+        res.send("User added");
     }
    
 }
 
-exports.getAllUsers = async (req , res, next) => {
-    res.send("TEST");
+exports.loginUser = async (req, res, next ) => {
+    let {login,email, password } = req.body;
+    let  user = new User(login, email,password);
+    existsUser = await user.checkexsits();
+    if ( existsUser.length  ) {
+        if(existsUser[0].Password == password){
+            res.send("LOGIN");
+        }
+        
+    }
+    else{
+        
+        console.log("TEST4");
+        res.send("User doesn't exists");
+    }
+   
 }
 
-exports.getPostById = async (req , res, next) => {
-    res.send("TESTś");
-}

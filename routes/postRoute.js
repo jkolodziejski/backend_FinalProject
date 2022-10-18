@@ -3,10 +3,10 @@ const postController = require('../controllers/postController');
 const router = express.Router();
 
 router
-    .route("/")
-    .get(postController.getAllUsers)
+    .route("/createUser")
     .post(postController.createNewUser);
 
-router.route("/:id").get(postController.getPostById);
-
+router
+    .route("/loginUser")
+    .post(postController.loginUser)        
 module.exports = router;
