@@ -3,7 +3,7 @@ const User = require('../models/User')
 exports.createNewUser = async (req, res, next ) => {
     let {login, email, password } = req.body;
     let  user = new User(login, email,password);
-    exit = await user.checkexit();
+    exit = await user.checkexsits();
     console.log(exit.length);
     if ( exit.length  ) {
         console.log("istnieje");
