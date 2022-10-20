@@ -22,11 +22,12 @@ exports.loginUser = async (req, res, next ) => {
         if(existsUser[0].Password == password){
             res.send("LOGIN");
         }
-        
+        else{
+            res.send("Wrong passwro");
+        }
     }
     else{
         
-        console.log("TEST4");
         res.send("User doesn't exists");
     }
    
