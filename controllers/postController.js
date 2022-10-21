@@ -1,4 +1,6 @@
 const User = require('../models/User')
+const jwt = require("jsonwebtoken");
+const fs = require('fs');
 
 exports.createNewUser = async (req, res, next ) => {
     let {login, email, password } = req.body;
@@ -20,7 +22,15 @@ exports.loginUser = async (req, res, next ) => {
     existsUser = await user.checkexsits();
     if ( existsUser.length  ) {
         if(existsUser[0].Password == password){
-            res.send("LOGIN");
+            const key = fs.readFileSync('private.key');
+            const token = jwt.sign(
+                existsUser[0],
+                key,
+                {
+                  expiresIn: "2h",
+                }
+            );
+            res.send(token);
         }
         else{
             res.send("Wrong passwro");
