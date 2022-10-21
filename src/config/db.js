@@ -11,7 +11,6 @@ const pool = mysql.createPool({
 
 module.exports = pool.promise();
 
-
 // Simple code to create data base. In future implement liquitbase
 
 let sql_create = "CREATE TABLE User (Login varchar(255),Email varchar(255),Password varchar(255)); ";

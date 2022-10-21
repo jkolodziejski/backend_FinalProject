@@ -1,11 +1,13 @@
-const db = require('../config/db')
+import db from "../config/db";
 
 class User{
-    constructor(login, email, password){
+    login: string;
+    email: string;
+    password: string;
+    constructor(login: string, email: string, password: string){
         this.login = login;
         this.email = email;
         this.password = password;
-
     }
     
     async save(){
