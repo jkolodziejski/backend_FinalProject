@@ -1,11 +1,12 @@
 const jwt = require("jsonwebtoken");
 const fs = require('fs');
+const User = require('../models/User.ts').User;
 
 exports.createNewUser = async (req, res, next ) => {
     let {login, email, password } = req.body;
     let  user = new User(login, email,password);
     existsUser = await user.checkexsits();
-    if ( exit.length  ) {
+    if ( existsUser.length  ) {
         res.send("You cannot add user!");
     }
     else{

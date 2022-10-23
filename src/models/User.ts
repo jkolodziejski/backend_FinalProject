@@ -1,4 +1,4 @@
-import db from "../config/db";
+import { pool } from "../config/db";
 
 class User{
     login: string;
@@ -13,7 +13,7 @@ class User{
     async save(){
         let sql = `INSERT INTO User (login,email,password) VALUES(  '${this.login}' , '${this.email}' , '${this.password}' );`;
 
-        const [newPost,_] = await db.execute(sql);
+        const [newPost,_] = await pool.execute(sql);
 
         return newPost;
     }
@@ -21,11 +21,10 @@ class User{
     async  checkexsits(){
         let sql = `SELECT * FROM User WHERE login = '${this.login}' ;`;
 
-        const [newPost,_] = await db.execute(sql);
+        const [newPost,_] = await pool.execute(sql);
 
         return newPost;
     }
-
 
     static findAll(){
     }

@@ -1,15 +1,15 @@
 require('dotenv').config();
-const mysql = require("mysql2");
+// const mysql = require("mysql2");
+import * as mysql from "mysql2"; 
 
-
-const pool = mysql.createPool({
+export const pool = mysql.createPool({
     host : process.env.DATABASE_URL,
     user : process.env.DATABASE_LOGIN,
     password : process.env.DATABASE_PASSWORD,
     database : process.env.DATABASE_NAME,
 });
 
-module.exports = pool.promise();
+module.exports = pool;
 
 // Simple code to create data base. In future implement liquitbase
 
